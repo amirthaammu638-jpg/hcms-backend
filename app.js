@@ -5,10 +5,13 @@ const dotenv = require('dotenv');
 const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-
+const cors = require('cors')
 dotenv.config();
 const app = express();
 
+app.use(cors({
+  origin:"http://localhost:5173",
+  credentials: true}))
 // --- DB ---
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/hostel_complaints';
 mongoose.connect(MONGO_URI)
